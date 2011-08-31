@@ -16,6 +16,7 @@ Welcome to redis cookbook's documentation!
    r
    s
    z
+   readme
 
 Indices and tables
 ==================
