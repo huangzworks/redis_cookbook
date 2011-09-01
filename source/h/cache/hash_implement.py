@@ -2,23 +2,46 @@
 
 from redis import Redis
 
-class Cache:
-    
-    def __init__(self, category, client=Redis()):
-        self.category = category
-        self.client = client
+def set(category, name, value, client=Redis()):
+    client.hset(category, name, value)
 
-    def set(self, name, value):
-        self.client.hset(self.category, name, value)
+def get(category, name, client=Redis()):
+    return client.hget(category, name)
 
-    def get(self, name):
-        return self.client.hget(self.category, name)
+def delete(category, name, client=Redis()):
+    client.hdel(category, name)
 
-    def expire(self, ttl):
-        self.client.expire(self.category, ttl)
+def expire(category, ttl, client=Redis()):
+    client.expire(category, ttl)
 
-    def ttl(self):
-        return self.client.ttl(self.category)
+def ttl(category, client=Redis()):
+    return client.ttl(category)
 
-    def size(self):
-        return self.client.hlen(self.category)
+def size(category, client=Redis()):
+    return client.hlen(category)
+
+
+# test:
+if __name__ == "__main__":
+
+    from time import sleep
+
+    category = 'greet'
+    key = 'morning'
+    value = 'good morning!'
+    expire_time = 3
+
+    set(category, key, value)
+    assert get(category, key) == value
+    assert size(category) == 1
+
+    delete(category, key)
+    assert get(category, key) == None
+    assert size(category) == 0
+
+    set(category, key,value)
+    expire(category, expire_time)
+    assert ttl(category) != None
+
+    sleep(expire_time * 2)
+    assert get(category, key) == None
