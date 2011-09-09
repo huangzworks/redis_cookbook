@@ -19,9 +19,3 @@ def cache(function):
             set(result)
             return result
     return _
-
-
-# test:
-if __name__ == "__main__":
-    # TODO
-    pass
