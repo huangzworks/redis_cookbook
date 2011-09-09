@@ -3,8 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to redis cookbook's documentation!
-==========================================
+《Redis Cookbook》
+====================
+
+.. warning:: 本项目正在进行中，如果有任何条目是空白或者不完全，都是可以理解的。
 
 目录(以第一个字的中文拼音排序):
 
@@ -37,12 +39,4 @@ Welcome to redis cookbook's documentation!
    x
    y
    z
-   readme
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+   about
